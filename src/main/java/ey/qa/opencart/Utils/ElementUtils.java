@@ -20,13 +20,18 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import eyct.qa.opencart.factory.DriverFactory;
+
+
 public class ElementUtils {
 
 
 	private WebDriver driver;
+	private JavaScriptUtil js;
 
 	public ElementUtils(WebDriver driver) {
 		this.driver = driver;
+	    js = new JavaScriptUtil(driver);
 	}
 
 	public WebElement getElement(By locator) {
@@ -35,6 +40,7 @@ public class ElementUtils {
 	}
 
 	public void doSendKeys(By locator, String value) {
+		
 		getElement(locator).sendKeys(value);
 	}
 
@@ -308,6 +314,15 @@ public class ElementUtils {
 	 * @return
 	 */
 	public WebElement waitForElementVisible(By locator, int timeOut) {
+		
+		WebElement ele = driver.findElement(locator);
+//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
+//		js.flash(ele);
+	
+		if(Boolean.parseBoolean(DriverFactory.high))	
+		{
+			js.flash(ele);
+		}
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
 		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 	}

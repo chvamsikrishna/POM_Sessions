@@ -13,7 +13,7 @@ public class LoginPageTest extends BaseTest{
 	{
 		
 		String actTitle = login_Page.getLoginPageTitle();
-		Assert.assertEquals(actTitle, "Account Login");
+		Assert.assertEquals(actTitle, "Account Login_Updated");
 	}
 	
 	@Test
@@ -23,13 +23,18 @@ public class LoginPageTest extends BaseTest{
 	    Assert.assertTrue(actualURL.contains("route=account/login"));
 	}
 	
+	
 	@Test
-	public void login_Test()
+	public void login_Test() throws InterruptedException
 	{
         
-		login_Page.login("vamsi@gmail.com", "automation");
+		account_Page =login_Page.login(prop.getProperty("username"), prop.getProperty("password"));
+		Assert.assertTrue(account_Page.logoutVisibility());
+	   	
 			
 	}
+	
+	
 	
 
 }
