@@ -68,15 +68,47 @@ public class DriverFactory {
 	return tLocal.get();
 	}
 	
-	public Properties prop_Init()
+	public Properties prop_Init() throws Exception
 	{
 		prop = new Properties();
-		try {
-			FileInputStream fis = new FileInputStream("./src/test/java/resources/config.properties");
-			prop.load(fis);
-		} catch (IOException e) {
-			e.printStackTrace();
+		FileInputStream fis = null;
+		
+		//mvn clean install -D<env variable name>="qa"
+		//mvn clean install
+	
+		// This helps to pick the env (qa)
+		String envName = System.getProperty("env");
+		System.out.println("Test cases are running on --"+ envName);
+		
+		if(envName == null )
+		{
+			System.out.println("No env are given hence running on QA env ");
+			try {
+				fis = new FileInputStream("./src/test/java/resources/config.properties");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
+		else
+		{
+			try {
+			switch(envName.toLowerCase())
+			{
+			case "qa":
+				fis = new FileInputStream("./src/test/java/resources/config.properties");
+				break;
+			default:
+				break;	
+			}
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+		}
+			
+	
+		prop.load(fis);
 		return prop;
 		
 	}

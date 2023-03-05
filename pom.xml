@@ -122,14 +122,14 @@
 					<forkCount>3</forkCount>
 					<!--<argLine>-Xmx400m -XX:MaxPermSize=200m</argLine>-->
 					<suiteXmlFiles>
-						<suiteXmlFile>src/test/java/resources/testng.xml</suiteXmlFile>
+						<suiteXmlFile>/POM_Project/src/test/java/resources/testng.xml</suiteXmlFile>
  
- 					<!-- <suiteXmlFile> ${suiteXmlFiles} </suiteXmlFile> -->
+ 					<!--<suiteXmlFile> ${suiteXmlFiles} </suiteXmlFile> -->
  
 					</suiteXmlFiles>
 
-					 <!-- <argLine> -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar" 
-						</argLine> -->
+					 <argLine> -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar" 
+						</argLine> 
 
 				</configuration>
 
@@ -137,8 +137,8 @@
 
 			</plugin>
 
-				
-				
+		
+				<!--
 				<plugin>
 					<artifactId>maven-resources-plugin</artifactId>
 					<version>3.0.2</version>
@@ -162,16 +162,18 @@
 				<plugin>
 					<artifactId>maven-deploy-plugin</artifactId>
 					<version>2.8.2</version>
-				</plugin>
+				</plugin> -->
 				<!-- site lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#site_Lifecycle -->
-				<plugin>
+				<!--<plugin>
 					<artifactId>maven-site-plugin</artifactId>
 					<version>3.7.1</version>
 				</plugin>
 				<plugin>
 					<artifactId>maven-project-info-reports-plugin</artifactId>
 					<version>3.0.0</version>
-				</plugin>
+				</plugin> 
+				
+				-->
 			</plugins>
 		</pluginManagement>
 	</build>

@@ -33,7 +33,7 @@ public class BaseTest {
     protected RegPage register_Page;
    
      @BeforeClass
-     public void setUp()
+     public void setUp() throws Exception
      {
     	 df = new DriverFactory();
     	 prop = df.prop_Init();
